@@ -29,12 +29,17 @@ CREATE TABLE IF NOT EXISTS health_facilities (
 
 -- Facility Admins table
 CREATE TABLE IF NOT EXISTS facility_admins (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNIQUE NOT NULL,
-    facility_id INT NOT NULL,
+    id INT AUTO_INCREMENT PRIMARY KEY,                     -- Unique row ID
+    user_id INT UNIQUE NOT NULL,                           -- Links to 'users' table where role = 'FACILITY_ADMIN'
+    facility_id INT NOT NULL,                              -- Assigned facility
+    fullname VARCHAR(200),                                 -- Full name of the facility admin
+    email VARCHAR(254),                                    -- Optional contact email
+    temporary_password VARCHAR(120),                       -- Temporary password before first login
+    password_changed BOOLEAN DEFAULT FALSE,                -- Tracks if user changed password
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (facility_id) REFERENCES health_facilities(id)
 );
+
 
 -- Healthcare Workers table
 CREATE TABLE IF NOT EXISTS healthcare_workers (

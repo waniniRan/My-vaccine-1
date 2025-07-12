@@ -28,12 +28,15 @@ ALTER TABLE notifications AUTO_INCREMENT = 1;
 ALTER TABLE healthcare_worker_sessions AUTO_INCREMENT = 1;
 
 -- Users (with correct role values)
-INSERT INTO users (username, password, email, role, must_change_password, created_at) VALUES
-('admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'SYSTEM_ADMIN', 0, NOW()),
-('guardian1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian1@example.com', 'GUARDIAN', 1, NOW()),
-('guardian2', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian2@example.com', 'GUARDIAN', 1, NOW()),
-('guardian3', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian3@example.com', 'GUARDIAN', 1, NOW()),
-('worker1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'worker1@example.com', 'WORKER', 1, NOW());
+Run this 
+INSERT INTO users (username, password, email, role) VALUES
+('123456789', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian1@example.com', 'GUARDIAN'),
+('987654321', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian2@example.com', 'GUARDIAN'),
+('456789123', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'guardian3@example.com', 'GUARDIAN'),
+('W001', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'worker1@example.com', 'WORKER'),
+('A001', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin@example.com', 'SYSTEM_ADMIN');
+('FA001', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'janeMW@gmail.com', 'FACILITY_ADMIN');
+
 
 -- Health Facilities
 INSERT INTO health_facilities (facility_id, name, facility_type, location, phone, email, created_by, is_active) VALUES
@@ -42,8 +45,9 @@ INSERT INTO health_facilities (facility_id, name, facility_type, location, phone
 ('HF003', 'Pediatric Clinic', 'CLINIC', 'City Center', '555-0303', 'info@pediatricclinic.com', 1, 1);
 
 -- Facility Admins (using the first facility)
-INSERT INTO facility_admins (user_id, facility_id) VALUES
-(1, 1);
+INSERT INTO facility_admins (user_id, facility_id, fullname, email, temporary_password, password_changed)
+VALUES (6, 1, 'Jane Mwangi', 'janeMW@example.com', '', 1);
+
 
 -- Healthcare Workers
 INSERT INTO healthcare_workers (user_id, worker_id, worker_username, fullname, email, phone_number, position, facility_id, facility_admin_id, status) VALUES

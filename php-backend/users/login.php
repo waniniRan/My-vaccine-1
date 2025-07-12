@@ -18,6 +18,7 @@ if ($stmt->num_rows > 0) {
     $stmt->bind_result($id, $hashed, $role);
     $stmt->fetch();
     if (password_verify($password, $hashed)) {
+        $conn->query("INSERT INTO system_logs (user_id, action_type, action_details) VALUES ($id, 'LOGIN', 'User logged in')");
         echo json_encode(['status' => 'success', 'user_id' => $id, 'role' => $role]);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid password']);

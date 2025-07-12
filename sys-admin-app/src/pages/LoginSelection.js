@@ -60,7 +60,6 @@ class LoginSelection extends React.Component {
       { to: "/system-admin/login", label: "System Admin Login" },
       { to: "/facility-admin/login", label: "Facility Admin Login" },
       { to: "/healthcare-worker/login", label: "Healthcare Worker Login" },
-      { to: "https://your-guardian-app-url/login", label: "Parent/Guardian Login", external: true },
     ];
     return (
       <div style={cardStyle}>
